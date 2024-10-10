@@ -114,8 +114,7 @@ export default function SignIn(props) {
   };
 
   return (
-    // <AppTheme {...props}>
-    <>
+    <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
         {/* <ColorModeSelect
@@ -128,7 +127,7 @@ export default function SignIn(props) {
             variant="h4"
             sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
-            Sign in
+            Sign In
           </Typography>
           <Box
             component="form"
@@ -142,7 +141,9 @@ export default function SignIn(props) {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email" sx={{ color: "text.primary" }}>
+                Email
+              </FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
@@ -161,7 +162,9 @@ export default function SignIn(props) {
             </FormControl>
             <FormControl>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password" sx={{ color: "text.primary" }}>
+                  Password
+                </FormLabel>
                 <Link
                   component="button"
                   type="button"
@@ -234,7 +237,6 @@ export default function SignIn(props) {
           </Box> */}
         </Card>
       </SignInContainer>
-      {/* </AppTheme> */}
-    </>
+    </AppTheme>
   );
 }
