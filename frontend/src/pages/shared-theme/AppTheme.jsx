@@ -14,6 +14,10 @@ function AppTheme({ children, disableCustomTheme, themeComponents }) {
     return disableCustomTheme
       ? {}
       : createTheme({
+          // Set the theme to always use LIGHT mode
+          palette: {
+            mode: "light",
+          },
           // For more details about CSS variables configuration, see https://mui.com/material-ui/customization/css-theme-variables/configuration/
           cssVariables: {
             colorSchemeSelector: "data-mui-color-scheme",
