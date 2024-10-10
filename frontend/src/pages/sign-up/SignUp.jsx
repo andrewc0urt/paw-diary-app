@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import getSignUpTheme from "./theme/getSignUpTheme";
+import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
 import TemplateFrame from "./TemplateFrame";
 
@@ -158,7 +158,7 @@ export default function SignUp() {
               variant="h4"
               sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
             >
-              Create an account
+              Sign Up
             </Typography>
             <Box
               component="form"

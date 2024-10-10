@@ -10,8 +10,8 @@ import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import ToggleColorMode from "./ToggleColorMode";
-import getSignUpTheme from "./theme/getSignUpTheme";
+// import ToggleColorMode from "./ToggleColorMode"; DELETED FILE
+import getSignUpTheme from "../shared-theme/getSignUpTheme";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: "relative",
