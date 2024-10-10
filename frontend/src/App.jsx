@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn()} />
-      <h1>Initial Paw Diary Setup</h1>
+      {/* <h1>Initial Paw Diary Setup</h1> */}
       <SignIn />
     </>
   );
