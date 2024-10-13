@@ -7,10 +7,10 @@ export default function PetAvatar() {
     <div
       className=""
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        // display: "flex",
+        // flexDirection: "column",
+        // alignItems: "center",
+        // justifyContent: "center",
         marginTop: "1rem",
       }}
     >
@@ -22,15 +22,15 @@ export default function PetAvatar() {
           height: 200,
         }}
       />
-      <Typography
+      {/* <Typography
         variant="h4"
         component="h2"
         style={{ fontFamily: '"Inter", "sans-serif"' }}
-      >
-        {/* <PetsIcon /> */}
-        Bubba
-        {/* <PetsIcon /> */}
-      </Typography>
+      > */}
+      {/* <PetsIcon /> */}
+      {/* Bubba */}
+      {/* <PetsIcon /> */}
+      {/* </Typography> */}
     </div>
   );
 }
