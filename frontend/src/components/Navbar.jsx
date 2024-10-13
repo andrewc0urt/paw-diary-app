@@ -13,14 +13,17 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-export default function Navbar({ isLoggedIn }) {
+// import MenuIcon from "@mui/icons-material/Menu";
+// import Button from "@mui/material/Button";
+
+export default function Navbar2({ isLoggedIn }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   //   Navbar links based on whether a user is logged into their account
   const pages = isLoggedIn
-    ? ["Home", "Dashboard", "Diary", "Logout"]
-    : ["Home", "Sign Up", "Log In"];
+    ? ["Home", "Dashboard", "Logout"]
+    : ["Home", "Dashboard"];
 
   //   Navbar links on the profile icon based on whether a user is logged into their account
   const settings = isLoggedIn
@@ -130,13 +133,49 @@ export default function Navbar({ isLoggedIn }) {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                <Avatar alt="Travis Howard" src="/tst.jpg" />
-                {/* <Avatar>AC</Avatar> */}
-              </IconButton>
-            </Tooltip>
+            {isLoggedIn ? (
+              <Tooltip title="Open settings">
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0 }}
+                  disabled={!isLoggedIn}
+                >
+                  {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                  <Avatar alt="Travis Howard" src="/tst.jpg" />
+                  {/* <Avatar>AC</Avatar> */}
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Box
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  gap: 1,
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  color="primary"
+                  variant="text"
+                  size="small"
+                  sx={{
+                    color: "white",
+                    // "&:hover": {
+                    //   backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    // },
+                  }}
+                >
+                  Sign in
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="small"
+                  sx={{ backgroundColor: "white", color: "blue" }}
+                >
+                  Sign up
+                </Button>
+              </Box>
+            )}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
