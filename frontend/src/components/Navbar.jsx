@@ -141,7 +141,12 @@ export default function Navbar2({ isLoggedIn }) {
                   disabled={!isLoggedIn}
                 >
                   {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                  <Avatar alt="Travis Howard" src="/tst.jpg" />
+                  <Avatar
+                    sx={{ width: "50px", height: "50px" }}
+                    alt="Travis Howard"
+                    src="/tst.jpg"
+                  />
+                  {/* <Typography>Travis Howard</Typography> */}
                   {/* <Avatar>AC</Avatar> */}
                 </IconButton>
               </Tooltip>
