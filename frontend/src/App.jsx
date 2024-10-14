@@ -13,6 +13,7 @@ import SignIn from "./pages/sign-in/SignIn";
 import SignUp from "./pages/sign-up/SignUp";
 import Divider from "@mui/material/Divider";
 import ProfileTemp from "./pages/profile-version2/ProfileTemp";
+import Hero from "./pages/homepage/Homepage";
 
 const isLoggedIn = () => {
   return false;
@@ -22,14 +23,15 @@ function App() {
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn()} />
+      <Hero />
       {/* <h1>Initial Paw Diary Setup</h1> */}
       {/* <SignIn />
       <SignUp /> */}
       {/* <Profile /> */}
 
-      <ProfileTemp />
+      {/* <ProfileTemp /> */}
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
