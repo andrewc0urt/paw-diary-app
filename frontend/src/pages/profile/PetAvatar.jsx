@@ -2,7 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import PetsIcon from "@mui/icons-material/Pets";
 
-export default function PetAvatar() {
+export default function PetAvatar({ avatarWidth, avatarHeight }) {
   return (
     <div
       className=""
@@ -18,8 +18,8 @@ export default function PetAvatar() {
         alt="Bubba"
         src="../../public/dogAvatar.jpg"
         sx={{
-          width: 200,
-          height: 200,
+          width: avatarWidth,
+          height: avatarHeight,
         }}
       />
       {/* <Typography

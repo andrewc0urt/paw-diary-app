@@ -14,7 +14,7 @@ import MoreInfoPopover from "../profile-version2/MoreInfoPopover";
 export default function Profile() {
   return (
     <>
-      <PetAvatar />
+      <PetAvatar avatarWidth={200} avatarHeight={200} />
       <Divider variant="middle" />
       <BasicInfo />
       <Divider variant="middle" />
