@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
+import { Link } from "react-router-dom";
+
 // import MenuIcon from "@mui/icons-material/Menu";
 // import Button from "@mui/material/Button";
 
@@ -22,8 +24,15 @@ export default function Navbar2({ isLoggedIn }) {
 
   //   Navbar links based on whether a user is logged into their account
   const pages = isLoggedIn
-    ? ["Home", "Dashboard", "Logout"]
-    : ["Home", "Dashboard"];
+    ? [
+        { linkName: "Home", routeURL: "/" },
+        { linkName: "Dashboard", routeURL: "dashboard" },
+        { linkName: "Logout", routeURL: "homepage" },
+      ]
+    : [
+        { linkName: "Home", routeURL: "/" },
+        { linkName: "Dashboard", routeURL: "dashboard" },
+      ];
 
   //   Navbar links on the profile icon based on whether a user is logged into their account
   const settings = isLoggedIn
@@ -50,23 +59,25 @@ export default function Navbar2({ isLoggedIn }) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <Link to="/" style={{ textDecoration: "none" }}> */}
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "white",
               textDecoration: "none",
             }}
           >
             LOGO
           </Typography>
+          {/* </Link> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -95,19 +106,34 @@ export default function Navbar2({ isLoggedIn }) {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+              {pages.map((eachPage) => (
+                <MenuItem key={eachPage.linkName} onClick={handleCloseNavMenu}>
+                  <Link
+                    to={eachPage.routeURL}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Typography sx={{ textAlign: "center" }}>
+                      {eachPage.linkName}
+                    </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          {/* <Link to={"/"}>
+            <AdbIcon
+              sx={{
+                display: { xs: "flex", md: "none", color: "white" },
+                mr: 1,
+              }}
+            />
+          </Link> */}
+
+          {/* <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -120,16 +146,19 @@ export default function Navbar2({ isLoggedIn }) {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+            {pages.map((eachPage) => (
+              <Link to={eachPage.routeURL} style={{ textDecoration: "none" }}>
+                <Button
+                  key={eachPage.linkName}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {eachPage.linkName}
+                </Button>
+              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -153,32 +182,37 @@ export default function Navbar2({ isLoggedIn }) {
             ) : (
               <Box
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "flex", md: "flex" },
                   gap: 1,
                   alignItems: "center",
                 }}
               >
-                <Button
-                  color="primary"
-                  variant="text"
-                  size="small"
-                  sx={{
-                    color: "white",
-                    // "&:hover": {
-                    //   backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    // },
-                  }}
-                >
-                  Sign in
-                </Button>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  size="small"
-                  sx={{ backgroundColor: "white", color: "blue" }}
-                >
-                  Sign up
-                </Button>
+                {/* Use Link component from react-router-dom and wrap each Button component to navigate to Sign In/Sign Up pages */}
+                <Link to="/signin">
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small"
+                    sx={{
+                      color: "white",
+                      // "&:hover": {
+                      //   backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      // },
+                    }}
+                  >
+                    Sign in
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    sx={{ backgroundColor: "white", color: "blue" }}
+                  >
+                    Sign up
+                  </Button>
+                </Link>
               </Box>
             )}
             <Menu

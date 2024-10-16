@@ -10,8 +10,13 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import PetsIcon from "@mui/icons-material/Pets";
 import EmailIcon from "@mui/icons-material/Email";
 
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
   const [value, setValue] = useState(0);
+
+  const navigateToPage = useNavigate();
 
   return (
     <footer>
@@ -23,8 +28,17 @@ export default function Footer() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
-          <BottomNavigationAction label="Dashboard" icon={<AssessmentIcon />} />
+          <BottomNavigationAction
+            label="Home"
+            icon={<HomeOutlinedIcon />}
+            onClick={() => navigateToPage("/")}
+          />
+
+          <BottomNavigationAction
+            label="Dashboard"
+            icon={<AssessmentIcon />}
+            onClick={() => navigateToPage("/dashboard")}
+          />
           <BottomNavigationAction label="Manage Pet" icon={<PetsIcon />} />
         </BottomNavigation>
       </Box>
