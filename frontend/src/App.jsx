@@ -1,5 +1,5 @@
 // import "./App.css";
-
+import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import BasicInfo from "./pages/profile/BasicInfo";
@@ -24,16 +24,8 @@ function App() {
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn()} />
-      {/* <Hero /> */}
-      <Dashboard />
-      {/* <h1>Initial Paw Diary Setup</h1> */}
-      {/* <SignIn />
-      <SignUp /> */}
-      {/* <Profile /> */}
-
-      {/* <ProfileTemp /> */}
-
-      {/* <Footer /> */}
+      <Outlet /> {/*Renders all other components from main.jsx here*/}
+      <Footer />
     </>
   );
 }
