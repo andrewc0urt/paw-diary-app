@@ -5,6 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import InteractiveList from "./InteractiveList";
 
 export default function DashboardAccordion({ title }) {
   return (
@@ -33,10 +34,11 @@ export default function DashboardAccordion({ title }) {
           <Typography>{title}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          {/* <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          </Typography> */}
+          <InteractiveList />
         </AccordionDetails>
       </Accordion>
     </div>

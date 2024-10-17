@@ -12,6 +12,8 @@ import AllergiesList from "../profile-version2/AllergiesList";
 
 import DashboardAccordion from "./dashboard-components/DashboardAccordion";
 
+import InteractiveList from "./dashboard-components/InteractiveList";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
   ...theme.typography.body2,
@@ -178,6 +180,8 @@ export default function Dashboard() {
           </Grid>
         </Grid> */}
       </Grid>
+
+      <InteractiveList />
     </Box>
   );
 }
