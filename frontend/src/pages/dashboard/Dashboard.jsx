@@ -181,7 +181,7 @@ export default function Dashboard() {
         </Grid> */}
       </Grid>
 
-      <InteractiveList />
+      {/* <InteractiveList /> */}
     </Box>
   );
 }

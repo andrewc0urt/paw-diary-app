@@ -16,14 +16,30 @@ import Typography from "@mui/material/Typography";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import AddListItemForm from "./AddListItemForm";
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    })
-  );
-}
+const petAllergyList = [
+  {
+    id: 1,
+    allergyName: "Pollen from trees, grasses, and weeds",
+    description: "Usually occurs in the spring",
+  },
+  {
+    id: 2,
+    allergyName: "Second allergy",
+    description: "",
+  },
+  {
+    id: 3,
+    allergyName: "Chicken allergy",
+    description: "Upsets her stomach - sometimes has gas",
+  },
+  {
+    id: 4,
+    allergyName: "Last allergy",
+    description: "50/50",
+  },
+];
 
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -32,6 +48,7 @@ const Demo = styled("div")(({ theme }) => ({
 export default function InteractiveList() {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
+  const [allergies, setAllergies] = React.useState(petAllergyList);
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -57,23 +74,48 @@ export default function InteractiveList() {
       </FormGroup>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
+        <Grid size={{ xs: 12, md: 12 }}>
           <Demo>
             <List dense={dense}>
-              {generate(
+              {allergies.map((each) => {
+                return (
+                  <ListItem
+                    key={each.id}
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="delete">
+                        <DeleteIcon />
+                      </IconButton>
+                    }
+                  >
+                    {/* <ListItemAvatar>
+                  <Avatar>
+                    <ReportProblemIcon />
+                  </Avatar>
+                </ListItemAvatar> */}
+                    <ReportProblemIcon
+                      sx={{ color: "gray", marginRight: "1rem" }}
+                    />
+                    <ListItemText
+                      primary={each.allergyName}
+                      secondary={secondary ? each.description : null}
+                    />
+                  </ListItem>
+                );
+              })}
+              {/* {generate(
                 <ListItem
                   secondaryAction={
                     <IconButton edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   }
-                >
-                  {/* <ListItemAvatar>
+                > */}
+              {/* <ListItemAvatar>
                     <Avatar>
                       <ReportProblemIcon />
                     </Avatar>
                   </ListItemAvatar> */}
-                  <ReportProblemIcon
+              {/* <ReportProblemIcon
                     sx={{ color: "gray", marginRight: "1rem" }}
                   />
                   <ListItemText
@@ -81,11 +123,13 @@ export default function InteractiveList() {
                     secondary={secondary ? "Secondary text" : null}
                   />
                 </ListItem>
-              )}
+              )} */}
             </List>
           </Demo>
         </Grid>
       </Grid>
+
+      <AddListItemForm />
     </Box>
   );
 }
