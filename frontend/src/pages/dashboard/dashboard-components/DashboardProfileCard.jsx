@@ -17,7 +17,7 @@ export default function DashboardProfileCard() {
     <Card sx={{ maxWidth: 345, height: "100%" }}>
       <CardMedia
         sx={{ width: "100%", height: 300 }}
-        image="/public/dogAvatar.jpg"
+        image="/dogAvatar.jpg"
         title="green iguana"
       />
       <CardContent>
