@@ -63,7 +63,7 @@ export default function InteractiveList({ category }) {
     behavioralNotes: [],
   });
 
-  // function to add a new item to the desired list
+  // function to add a new item to the designated list (category)
   const addListItem = (category, primaryText, secondaryText) => {
     // console.log(`Category: ${category}`);
     setSubsectionLists((prevLists) => ({
@@ -76,6 +76,16 @@ export default function InteractiveList({ category }) {
           description: secondaryText,
         },
       ],
+    }));
+  };
+
+  // function to delete an item from the designated list (category)
+  const deleteItem = (category, id) => {
+    // console.log("clicked delete");
+    // console.log(`Category: ${category}`);
+    setSubsectionLists((prevObj) => ({
+      ...prevObj,
+      [category]: prevObj[category].filter((item) => item.id !== id),
     }));
   };
 
@@ -110,7 +120,11 @@ export default function InteractiveList({ category }) {
                   <ListItem
                     key={each.id}
                     secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        onClick={() => deleteItem(category, each.id)}
+                      >
                         <DeleteIcon />
                       </IconButton>
                     }
