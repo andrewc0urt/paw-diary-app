@@ -17,38 +17,67 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import AddListItemForm from "./AddListItemForm";
+import { useState } from "react";
 
-const petAllergyList = [
-  {
-    id: 1,
-    allergyName: "Pollen from trees, grasses, and weeds",
-    description: "Usually occurs in the spring",
-  },
-  {
-    id: 2,
-    allergyName: "Second allergy",
-    description: "",
-  },
-  {
-    id: 3,
-    allergyName: "Chicken allergy",
-    description: "Upsets her stomach - sometimes has gas",
-  },
-  {
-    id: 4,
-    allergyName: "Last allergy",
-    description: "50/50",
-  },
-];
+// const petAllergyList = [
+//   {
+//     id: 1,
+//     allergyName: "Pollen from trees, grasses, and weeds",
+//     description: "Usually occurs in the spring",
+//   },
+//   {
+//     id: 2,
+//     allergyName: "Second allergy",
+//     description: "",
+//   },
+//   {
+//     id: 3,
+//     allergyName: "Chicken allergy",
+//     description: "Upsets her stomach - sometimes has gas",
+//   },
+//   {
+//     id: 4,
+//     allergyName: "Last allergy",
+//     description: "50/50",
+//   },
+// ];
 
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-export default function InteractiveList() {
+export default function InteractiveList({ category }) {
+  // const [petAllergyList, setPetAllergyList] = useState([]);
+
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
-  const [allergies, setAllergies] = React.useState(petAllergyList);
+  // const [allergies, setAllergies] = React.useState([]);
+  // const [items, setItems] = useState([]);
+
+  const [subsectionLists, setSubsectionLists] = useState({
+    food: [],
+    treats: [],
+    allergies: [],
+    medicines: [],
+    injuriesAndIllnesses: [],
+    behavioralNotes: [],
+  });
+
+  // function to add a new item to the desired list
+  const addListItem = (category, primaryText, secondaryText) => {
+    // console.log(`Category: ${category}`);
+    setSubsectionLists((prevLists) => ({
+      ...prevLists,
+      [category]: [
+        ...prevLists[category],
+        {
+          id: crypto.randomUUID(),
+          name: primaryText,
+          description: secondaryText,
+        },
+      ],
+    }));
+  };
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -72,12 +101,11 @@ export default function InteractiveList() {
           label="Show Additional Details"
         />
       </FormGroup>
-
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, md: 12 }}>
           <Demo>
             <List dense={dense}>
-              {allergies.map((each) => {
+              {subsectionLists[category].map((each) => {
                 return (
                   <ListItem
                     key={each.id}
@@ -87,49 +115,35 @@ export default function InteractiveList() {
                       </IconButton>
                     }
                   >
-                    {/* <ListItemAvatar>
-                  <Avatar>
-                    <ReportProblemIcon />
-                  </Avatar>
-                </ListItemAvatar> */}
                     <ReportProblemIcon
                       sx={{ color: "gray", marginRight: "1rem" }}
                     />
                     <ListItemText
-                      primary={each.allergyName}
+                      primary={each.name}
                       secondary={secondary ? each.description : null}
                     />
                   </ListItem>
                 );
               })}
-              {/* {generate(
-                <ListItem
-                  secondaryAction={
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  }
-                > */}
-              {/* <ListItemAvatar>
-                    <Avatar>
-                      <ReportProblemIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
-              {/* <ReportProblemIcon
-                    sx={{ color: "gray", marginRight: "1rem" }}
-                  />
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? "Secondary text" : null}
-                  />
-                </ListItem>
-              )} */}
             </List>
           </Demo>
         </Grid>
       </Grid>
 
-      <AddListItemForm />
+      {/* 
+      Conditionally render the AddListItemForm unless the category is "food". 
+      This section allows users to add items to lists for treats, allergies, etc. 
+      Future implementation will involve extracting current food information from the database, 
+      representing the pet's primary food. 
+      Consider if pets might have multiple primary foods throughout the day.
+      */}
+
+      {category !== "food" && (
+        <AddListItemForm
+          addNewItemFunction={addListItem}
+          listCategory={category}
+        />
+      )}
     </Box>
   );
 }
